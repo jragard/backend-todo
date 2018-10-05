@@ -54,6 +54,7 @@ class TodosList(Resource):
                               'Completion Date': request.form['Completion Date']
                               }
             logger.info("Todo posted successfully - " + creation_date)
+            return TODOS
         except Exception as e:
             logger.error(e)
 
