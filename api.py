@@ -38,7 +38,10 @@ class TodosList(Resource):
 
     def post(self):
         full_date = datetime.now()
-        creation_date = str(full_date.month) + "/" + str(full_date.day) + "/" + str(full_date.year)
+        creation_date = (str(full_date.month) + "/" +
+                         str(full_date.day) + "/" +
+                         str(full_date.year)
+                         )
 
         if len(TODOS) == 0:
             todo_id = "1"
@@ -51,7 +54,8 @@ class TodosList(Resource):
                               'Last Updated date': creation_date,
                               'Due Date': request.form['Due'],
                               'Completed': request.form['Completed'],
-                              'Completion Date': request.form['Completion Date']
+                              'Completion Date': request.form
+                              ['Completion Date']
                               }
             logger.info("Todo posted successfully - " + creation_date)
             return TODOS
@@ -71,7 +75,10 @@ class SingleTodo(Resource):
     def put(self, todo_id):
         try:
             full_date = datetime.now()
-            update_date = str(full_date.month) + "/" + str(full_date.day) + "/" + str(full_date.year)
+            update_date = (str(full_date.month) + "/" +
+                           str(full_date.day) + "/" +
+                           str(full_date.year)
+                           )
 
             TODOS[todo_id] = {'Title': request.form['Title'],
                               'Creation Date': TODOS[todo_id]['Creation Date'],
@@ -83,7 +90,7 @@ class SingleTodo(Resource):
             if request.form['Completed'] == 'True':
                 TODOS[todo_id]['Completion Date'] = update_date
             else:
-                TODOS[todo_id]['Completion Date'] = 'Not Yet Completed'  
+                TODOS[todo_id]['Completion Date'] = 'Not Yet Completed'
 
             logger.info("Todo Updated Successfully")
             return {todo_id: TODOS[todo_id]}
