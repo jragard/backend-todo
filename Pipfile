@@ -8,6 +8,7 @@ name = "pypi"
 [packages]
 flask = "*"
 flask-restful = "*"
+Jinja2 = ">=2.10.1"
 
 [requires]
 python_version = "2.7"
